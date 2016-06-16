@@ -12,11 +12,19 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactDom = require('react-dom');
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
 var _reactNative = require('react-native');
 
 var _reactors = require('reactors');
 
 var _reactors2 = _interopRequireDefault(_reactors);
+
+var _lodash = require('lodash');
+
+var _lodash2 = _interopRequireDefault(_lodash);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -30,9 +38,21 @@ var ReactorsTextInput = function (_Component) {
   _inherits(ReactorsTextInput, _Component);
 
   function ReactorsTextInput() {
+    var _Object$getPrototypeO;
+
+    var _temp, _this, _ret;
+
     _classCallCheck(this, ReactorsTextInput);
 
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(ReactorsTextInput).apply(this, arguments));
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ReactorsTextInput)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.onWebChange = function () {
+      if (typeof _this.props.onChange === 'function') {
+        _this.props.onChange(_this.getWebValue());
+      }
+    }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(ReactorsTextInput, [{
@@ -45,8 +65,25 @@ var ReactorsTextInput = function (_Component) {
           return _react2.default.createElement(_reactNative.TextInput, this.props);
         case 'web':
         case 'desktop':
-          return _react2.default.createElement('input', _extends({ type: 'text' }, this.props));
+          return this._renderWeb();
       }
+    }
+  }, {
+    key: '_renderWeb',
+    value: function _renderWeb() {
+      var props = _lodash2.default.omit(this.props, ['onChange']);
+
+      return _react2.default.createElement('input', _extends({
+        type: 'text'
+      }, props, {
+        ref: 'textInput',
+        onKeyUp: this.onWebChange
+      }));
+    }
+  }, {
+    key: 'getWebValue',
+    value: function getWebValue() {
+      return _reactDom2.default.findDOMNode(this.refs.textInput).value;
     }
   }]);
 
