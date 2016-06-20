@@ -13,7 +13,7 @@ npm i -S reactors-form
 
 # Usage
 
-```js
+```javascript
 import React, {Component} from 'react';
 import {View} from 'reactors';
 import {TextInput} from 'reactors-form';
@@ -28,3 +28,32 @@ class MyForm extends Component {
   }
 }
 ```
+
+# Components
+
+## `<Button>`
+
+```javascript
+import React, {Component} from 'react';
+import {Button} from 'reactors-form';
+
+class MyButton extends Component {
+  render() {
+    return (
+      <Button onPress={(event) => console.log('Pressed!')}>
+        Some text or components here ...
+      </Button>
+    );
+  }
+}
+```
+
+### Props
+
+#### `onPress: (event: React$Event) => void`
+
+A function to be called when user presses button.
+
+### `style: $Style`
+
+A style that can overwrite button's default style.
