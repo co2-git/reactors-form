@@ -31,6 +31,35 @@ class MyForm extends Component {
 
 # Components
 
+## `<TextInput />`
+
+```javascript
+import React, {Component} from 'react';
+import {TextInput} from 'reactors-form';
+
+class MyTextInput extends Component {
+  state = {value: null};
+  render() {
+    return (
+      <TextInput
+        value={this.state.value}
+        onChange={(value) => this.setState({value})}
+        />
+    );
+  }
+}
+```
+
+### Props
+
+#### `value: string`
+
+A stringable value.
+
+### `onChange: (value: string) => void`
+
+An action called every time the input changes. First argument is input's current value.
+
 ## `<Button>`
 
 ```javascript
