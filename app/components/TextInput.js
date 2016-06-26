@@ -1,16 +1,25 @@
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
-import {TextInput} from 'react-native';
-import Reactors from 'reactors';
+import {TextInput, Text, View} from 'react-native';
+// import Reactors from 'reactors';
 import _ from 'lodash';
 
 export default class ReactorsTextInput extends Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
-    switch (Reactors.platform) {
+    // console.log('TI', Reactors.platform);
+    switch ('mobile') {
     default:
       throw new Error('Unsupported platform: ' + Reactors.platform);
     case 'mobile':
-      return <TextInput {...this.props} />;
+      return <TextInput
+        style={[
+          {borderWidth: 2, borderColor: 'black', height: 30},
+          this.props.style,
+        ]}
+        {...this.props}
+        />;
     case 'web':
     case 'desktop':
       return this._renderWeb();
