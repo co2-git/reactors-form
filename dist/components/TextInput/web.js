@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _react = require('react');
+var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -16,13 +16,8 @@ exports.default = function (props) {
   var webProps = _extends({}, props);
   var _onChange = webProps.onChange;
   delete webProps.onChange;
-  var onKeyUp = function onKeyUp(event) {
-    if (typeof _onChange === 'function') {
-      _onChange(event.target.value);
-    }
-  };
-  return _react2.default.createElement('input', _extends({
-    type: 'text'
+  return _react2.default.createElement("input", _extends({
+    type: "text"
   }, webProps, {
     onChange: function onChange(event) {
       return _onChange(event.target.value);
