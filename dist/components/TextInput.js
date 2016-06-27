@@ -4,83 +4,36 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactNative = require('react-native');
+var _reactors = require('reactors');
+
+var _reactors2 = _interopRequireDefault(_reactors);
 
 var _lodash = require('lodash');
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
+var _mobile = require('./TextInput/mobile');
+
+var _mobile2 = _interopRequireDefault(_mobile);
+
+var _web = require('./TextInput/web');
+
+var _web2 = _interopRequireDefault(_web);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-// import Reactors from 'reactors';
-
-
-var ReactorsTextInput = function (_Component) {
-  _inherits(ReactorsTextInput, _Component);
-
-  function ReactorsTextInput(props) {
-    _classCallCheck(this, ReactorsTextInput);
-
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ReactorsTextInput).call(this, props));
-
-    _this.onWebChange = function () {
-      if (typeof _this.props.onChange === 'function') {
-        _this.props.onChange(_this.getWebValue());
-      }
-    };
-
-    return _this;
+exports.default = function (props) {
+  switch (_reactors2.default.platform) {
+    default:
+      throw new Error('Unsupported platform: ' + _reactors2.default.platform);
+    case 'mobile':
+      return (0, _mobile2.default)(props);
+    case 'web':
+    case 'desktop':
+      return (0, _web2.default)(props);
   }
-
-  _createClass(ReactorsTextInput, [{
-    key: 'render',
-    value: function render() {
-      // console.log('TI', Reactors.platform);
-      switch ('mobile') {
-        default:
-          throw new Error('Unsupported platform: ' + Reactors.platform);
-        case 'mobile':
-          return _react2.default.createElement(_reactNative.TextInput, _extends({
-            style: [{ borderWidth: 2, borderColor: 'black', height: 30 }, this.props.style]
-          }, this.props));
-        case 'web':
-        case 'desktop':
-          return this._renderWeb();
-      }
-    }
-  }, {
-    key: '_renderWeb',
-    value: function _renderWeb() {
-      var props = _lodash2.default.omit(this.props, ['onChange']);
-
-      return _react2.default.createElement('input', _extends({
-        type: 'text'
-      }, props, {
-        ref: 'textInput',
-        onKeyUp: this.onWebChange
-      }));
-    }
-  }, {
-    key: 'getWebValue',
-    value: function getWebValue() {
-      return ReactDOM.findDOMNode(this.refs.textInput).value;
-    }
-  }]);
-
-  return ReactorsTextInput;
-}(_react.Component);
-
-exports.default = ReactorsTextInput;
+};

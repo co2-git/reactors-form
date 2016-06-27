@@ -1,6 +1,6 @@
 import Reactors from 'reactors';
 import renderMobile from './Button/mobile';
-import renderDOM from './Button/dom';
+import renderWeb from './Button/web';
 
 export default (props) => {
   switch (Reactors.platform) {
@@ -10,6 +10,6 @@ export default (props) => {
     return renderMobile(props);
   case 'web':
   case 'desktop':
-    return renderDOM(props);
+    return renderWeb(props);
   }
 }

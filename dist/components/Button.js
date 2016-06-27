@@ -12,9 +12,9 @@ var _mobile = require('./Button/mobile');
 
 var _mobile2 = _interopRequireDefault(_mobile);
 
-var _dom = require('./Button/dom');
+var _web = require('./Button/web');
 
-var _dom2 = _interopRequireDefault(_dom);
+var _web2 = _interopRequireDefault(_web);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26,6 +26,6 @@ exports.default = function (props) {
       return (0, _mobile2.default)(props);
     case 'web':
     case 'desktop':
-      return (0, _dom2.default)(props);
+      return (0, _web2.default)(props);
   }
 };

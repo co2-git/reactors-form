@@ -10,22 +10,16 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactors = require('reactors');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function (props) {
-  var webProps = _extends({}, props);
-  var _onChange = webProps.onChange;
-  delete webProps.onChange;
-  var onKeyUp = function onKeyUp(event) {
-    if (typeof _onChange === 'function') {
-      _onChange(event.target.value);
-    }
-  };
-  return _react2.default.createElement('input', _extends({
-    type: 'text'
-  }, webProps, {
-    onChange: function onChange(event) {
-      return _onChange(event.target.value);
-    }
-  }));
+  return _react2.default.createElement(
+    'button',
+    _extends({}, props, _reactors.Gesture.handlers(props), {
+      style: [{ display: 'block' }, props.style]
+    }),
+    props.children
+  );
 };
