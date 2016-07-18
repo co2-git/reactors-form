@@ -1,15 +1,18 @@
 import React from 'react';
-import {Gesture} from 'reactors';
+import Reactors, {Gesture} from 'reactors';
 
-export default (props) => (
-  <button
-    {...props}
-    {...Gesture.handlers(props)}
-    style={[
-      {display: 'block'},
-      props.style,
-    ]}
-    >
-    {props.children}
-  </button>
-);
+export default function ReactorsFormWebButton (props) {
+  const webProps = Reactors.props(props);
+  return (
+    <button
+      {...webProps}
+      style={{
+        display: 'block',
+        padding: 10,
+        ...webProps.style,
+      }}
+      >
+      {props.children}
+    </button>
+  );
+}
