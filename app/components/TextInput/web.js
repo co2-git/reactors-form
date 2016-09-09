@@ -1,12 +1,15 @@
 import React from 'react';
+import _ from 'lodash';
 
 export default (props) => {
   const webProps = {...props};
-  const onChange = webProps.onChange;
-  delete webProps.onChange;
   return <input
     type="text"
-    {...webProps}
-    onChange={(event) => onChange(event.target.value)}
+    {..._.omit(webProps, ['onChange'])}
+    onChange={(event) => {
+      if (typeof webProps.onChange === 'function') {
+        webProps.onChange(event.target.value);
+      }
+    }}
     />;
 };

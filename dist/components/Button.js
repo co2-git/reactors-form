@@ -20,7 +20,6 @@ var _web2 = _interopRequireDefault(_web);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function ReactorsFormButtom(props) {
-  console.log(_reactors2.default.platform);
   switch (_reactors2.default.platform) {
     default:
       throw new Error('Unsupported platform: ' + _reactors2.default.platform);
