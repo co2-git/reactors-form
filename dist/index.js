@@ -22,4 +22,13 @@ Object.defineProperty(exports, 'Button', {
   }
 });
 
+var _Dropdown = require('./components/Dropdown');
+
+Object.defineProperty(exports, 'Dropdown', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Dropdown).default;
+  }
+});
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
