@@ -14,17 +14,19 @@ var _lodash = require('lodash');
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
+var _reactors = require('reactors');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function (props) {
-  var webProps = _extends({}, props);
-  return _react2.default.createElement('input', _extends({
-    type: 'text'
-  }, _lodash2.default.omit(webProps, ['onChange']), {
+  var webProps = _reactors.Gesture.handlers(_extends({}, props, {
     onChange: function onChange(event) {
-      if (typeof webProps.onChange === 'function') {
-        webProps.onChange(event.target.value);
+      if (typeof props.onChange === 'function') {
+        props.onChange(event.target.value);
       }
     }
   }));
+  return _react2.default.createElement('input', _extends({
+    type: 'text'
+  }, webProps));
 };
