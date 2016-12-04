@@ -1,29 +1,55 @@
 import React from 'react';
-import {TouchableHighlight} from 'react-native';
-import {View, Text} from 'reactors';
+import {
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+} from 'react-native';
 
-export default (props) => {
-  const rootProps = {...props};
-  let style = {...rootProps.style};
-  let textStyle = {};
-  if (style.color) {
-    textStyle.color = style.color;
-    delete style.color;
-  }
-  rootProps.style = style;
+type $props = {
+  children: string | React.Element | React.Element[],
+  onPress?: Function,
+  style?: Object | number,
+  color?: string,
+  size?: number,
+  bold?: boolean,
+  activeBackgroundColor?: string,
+};
 
+export default function Button(props: $props) {
   let content;
   if (typeof props.children === 'string') {
-    content = <Text style={textStyle}>{props.children}</Text>;
-  } else if (Array.isArray(props.chidlren)) {
-    content = <View>{props.chidlren}</View>;
-  } else {
-    content = props.children;
+    const style = {};
+    if (props.color) {
+      style.color = props.color;
+    }
+    if (props.size) {
+      style.fontSize = props.size;
+    }
+    if (props.bold) {
+      style.fontWeight = 'bold';
+    }
+    content = (<Text style={style}>{props.children}</Text>);
   }
-  console.log({rootProps});
   return (
-    <View>
-      
-    </View>
+    <TouchableHighlight
+      style={[styleSheet.container, props.style]}
+      onPress={() => {
+        if (typeof props.onPress === 'function') {
+          props.onPress();
+        }
+      }}
+      underlayColor={props.activeBackgroundColor || '#ccc'}
+      >
+      {content}
+    </TouchableHighlight>
   );
-};
+}
+
+const styleSheet = StyleSheet.create({
+  container: {
+    borderWidth: 2,
+    borderColor: '#ccc',
+    borderRadius: 6,
+    padding: 8,
+  },
+});

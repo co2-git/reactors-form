@@ -22,9 +22,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function DropdownWeb(props) {
   var handlers = _reactors.Gesture.handlers(_extends({}, props, {
-    onChange: function onChange(event) {
+    onChange: function onChange(value) {
       if (typeof props.onChange === 'function') {
-        props.onChange(event.target.value);
+        props.onChange(value);
       }
     }
   }));

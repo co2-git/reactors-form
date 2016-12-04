@@ -3,8 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+exports.default = Button;
 
 var _react = require('react');
 
@@ -12,36 +11,47 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require('react-native');
 
-var _reactors = require('reactors');
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = function (props) {
-  var rootProps = _extends({}, props);
-  var style = _extends({}, rootProps.style);
-  var textStyle = {};
-  if (style.color) {
-    textStyle.color = style.color;
-    delete style.color;
-  }
-  rootProps.style = style;
-
+function Button(props) {
   var content = void 0;
   if (typeof props.children === 'string') {
+    var _style = {};
+    if (props.color) {
+      _style.color = props.color;
+    }
+    if (props.size) {
+      _style.fontSize = props.size;
+    }
+    if (props.bold) {
+      _style.fontWeight = 'bold';
+    }
     content = _react2.default.createElement(
-      _reactors.Text,
-      { style: textStyle },
+      _reactNative.Text,
+      { style: _style },
       props.children
     );
-  } else if (Array.isArray(props.chidlren)) {
-    content = _react2.default.createElement(
-      _reactors.View,
-      null,
-      props.chidlren
-    );
-  } else {
-    content = props.children;
   }
-  console.log({ rootProps: rootProps });
-  return _react2.default.createElement(_reactors.View, null);
-};
+  return _react2.default.createElement(
+    _reactNative.TouchableHighlight,
+    {
+      style: [styleSheet.container, props.style],
+      onPress: function onPress() {
+        if (typeof props.onPress === 'function') {
+          props.onPress();
+        }
+      },
+      underlayColor: props.activeBackgroundColor || '#ccc'
+    },
+    content
+  );
+}
+
+var styleSheet = _reactNative.StyleSheet.create({
+  container: {
+    borderWidth: 2,
+    borderColor: '#ccc',
+    borderRadius: 6,
+    padding: 8
+  }
+});

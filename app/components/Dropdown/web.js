@@ -5,15 +5,18 @@ import _ from 'lodash';
 import {Gesture} from 'reactors';
 
 type PROPS = {
-  data: any[],
+  data: {
+    label: string,
+    key: any,
+  }[],
 };
 
 export default function DropdownWeb(props: PROPS) {
   const handlers = Gesture.handlers({
     ...props,
-    onChange: (event) => {
+    onChange: (value) => {
       if (typeof props.onChange === 'function') {
-        props.onChange(event.target.value);
+        props.onChange(value);
       }
     },
   });
