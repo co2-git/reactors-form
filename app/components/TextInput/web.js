@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import {Gesture} from 'reactors';
 
-export default (props) => {
+export default function TextInputWeb (props) {
   const webProps = Gesture.handlers({
     ...props,
     onChange: (event) => {
@@ -13,6 +13,7 @@ export default (props) => {
   });
   return <input
     type="text"
+    style={{...props.style}}
     {...webProps}
     />;
-};
+}

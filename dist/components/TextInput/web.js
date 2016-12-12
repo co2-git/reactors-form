@@ -6,6 +6,8 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+exports.default = TextInputWeb;
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -18,7 +20,7 @@ var _reactors = require('reactors');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = function (props) {
+function TextInputWeb(props) {
   var webProps = _reactors.Gesture.handlers(_extends({}, props, {
     onChange: function onChange(event) {
       if (typeof props.onChange === 'function') {
@@ -27,6 +29,7 @@ exports.default = function (props) {
     }
   }));
   return _react2.default.createElement('input', _extends({
-    type: 'text'
+    type: 'text',
+    style: _extends({}, props.style)
   }, webProps));
-};
+}
