@@ -11,6 +11,8 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require('react-native');
 
+var _reactors = require('reactors');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Button(props) {
@@ -47,7 +49,7 @@ function Button(props) {
   );
 }
 
-var styleSheet = _reactNative.StyleSheet.create({
+var styleSheet = _reactors.StyleSheet.create({
   container: {
     borderWidth: 2,
     borderColor: '#ccc',
