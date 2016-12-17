@@ -1,5 +1,5 @@
 import React from 'react';
-import Reactors from 'reactors';
+import Reactors, {View} from 'reactors';
 import _ from 'lodash';
 
 export default function Dropdown(props) {
@@ -7,10 +7,11 @@ export default function Dropdown(props) {
   default:
     throw new Error('Unsupported platform: ' + Reactors.platform);
   case 'mobile': {
-    const DropdownMobile = require('./DropdownMobile').default;
-    return (
-      <DropdownMobile {...props} />
-    );
+    return <View />;
+    // const DropdownMobile = require('./DropdownMobile').default;
+    // return (
+    //   <DropdownMobile {...props} />
+    // );
   }
   case 'web':
   case 'desktop': {
