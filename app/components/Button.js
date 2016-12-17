@@ -1,15 +1,22 @@
+import React from 'react';
 import Reactors from 'reactors';
-import renderMobile from './Button/mobile';
-import renderWeb from './Button/web';
 
-export default function ReactorsFormButtom(props) {
+export default function Button(props) {
   switch (Reactors.platform) {
   default:
     throw new Error('Unsupported platform: ' + Reactors.platform);
-  case 'mobile':
-    return renderMobile(props);
+  case 'mobile': {
+    const ButtonMobile = require('./ButtonMobile').default;
+    return (
+      <ButtonMobile {...props} />
+    );
+  }
   case 'web':
-  case 'desktop':
-    return renderWeb(props);
+  case 'desktop': {
+    const ButtonWeb = require('./ButtonWeb').default;
+    return (
+      <ButtonWeb {...props} />
+    );
+  }
   }
 }

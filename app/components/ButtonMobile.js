@@ -15,7 +15,7 @@ type $props = {
   activeBackgroundColor?: string,
 };
 
-export default function Button(props: $props) {
+export default function ButtonMobile(props: $props) {
   let content;
   if (typeof props.children === 'string') {
     const style = {};

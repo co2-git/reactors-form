@@ -1,7 +1,7 @@
 import React from 'react';
 import Reactors, {Gesture} from 'reactors';
 
-export default function ReactorsFormWebButton (props) {
+export default function ButtonWeb (props) {
   const webProps = Reactors.props(props);
   return (
     <button

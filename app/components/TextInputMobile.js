@@ -1,7 +1,7 @@
 import React from 'react';
 import {TextInput} from 'react-native';
 
-export default (props) => {
+export default function TextInputMobile (props) {
   const style = [
     {borderWidth: 2, borderColor: 'black', height: 30},
     props.style,
@@ -13,4 +13,4 @@ export default (props) => {
     delete mobileProps.onChange;
   }
   return <TextInput style={style} {...mobileProps} />
-};
+}
