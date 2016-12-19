@@ -16,7 +16,11 @@ export default class TextInputWeb extends Component {
     return (
       <input
         type="text"
-        style={{...this.props.style}}
+        style={{
+          display: 'block',
+          width: '100%',
+          ...this.props.style,
+        }}
         {...webProps}
         />
     );
