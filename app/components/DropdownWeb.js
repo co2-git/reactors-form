@@ -9,6 +9,7 @@ type PROPS = {
     label: string,
     key: any,
   }[],
+  selected: any,
 };
 
 export default function DropdownWeb(props: PROPS) {
@@ -21,11 +22,16 @@ export default function DropdownWeb(props: PROPS) {
     },
   });
   const webProps = _.omit(handlers, ['data']);
-  const options = props.data.map(d => (
-    <option value={d.key} key={d.key}>{d.label}</option>
+  const options = props.data.map((item) => (
+    <option
+      value={item.key}
+      key={item.key}
+      >
+      {item.label}
+    </option>
   ));
   return (
-    <select {...webProps}>
+    <select {...webProps} value={props.selected}>
       {options}
     </select>
   );
