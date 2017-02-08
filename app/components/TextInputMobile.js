@@ -1,16 +1,26 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {TextInput} from 'react-native';
 
-export default function TextInputMobile (props) {
-  const style = [
-    {borderWidth: 2, borderColor: 'black', height: 30},
-    props.style,
-  ];
-  const mobileProps = {...props};
-  if (mobileProps.onChange) {
-    const onChange = mobileProps.onChange;
-    mobileProps.onChangeText = onChange;
-    delete mobileProps.onChange;
+export default class ReactorsFormTextInputMobile extends Component {
+  blur() {
+    this.refs.__internal.blur();
   }
-  return <TextInput style={style} {...mobileProps} />
+
+  focus() {
+    this.refs.__internal.focus();
+  }
+
+  render() {
+    const style = [
+      {borderWidth: 2, borderColor: 'black', height: 30},
+      this.props.style,
+    ];
+    const mobileProps = {...this.props};
+    if (mobileProps.onChange) {
+      const onChange = mobileProps.onChange;
+      mobileProps.onChangeText = onChange;
+      delete mobileProps.onChange;
+    }
+    return <TextInput ref="__internal" style={style} {...mobileProps} />;
+  }
 }

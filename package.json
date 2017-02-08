@@ -1,7 +1,7 @@
 {
   "name": "reactors-form",
-  "version": "0.2.10",
-  "description": "",
+  "version": "0.4.0",
+  "description": "Form support for reactors",
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
