@@ -12,7 +12,8 @@ export default class ReactorsFormTextInputMobile extends Component {
 
   render() {
     const style = [
-      {borderWidth: 2, borderColor: 'black', height: 30},
+      // default style for RN so text input shows
+      {borderWidth: 2, borderColor: '#444', height: 30},
       this.props.style,
     ];
     const mobileProps = {...this.props};
@@ -21,6 +22,12 @@ export default class ReactorsFormTextInputMobile extends Component {
       mobileProps.onChangeText = onChange;
       delete mobileProps.onChange;
     }
-    return <TextInput ref="__internal" style={style} {...mobileProps} />;
+    return (
+      <TextInput
+        ref="__internal"
+        style={style}
+        {...mobileProps}
+        />
+    );
   }
 }

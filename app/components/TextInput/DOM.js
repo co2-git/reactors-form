@@ -1,8 +1,20 @@
 import React, {Component} from 'react';
-import _ from 'lodash';
+import omit from 'lodash/omit';
 import {Gesture} from 'reactors';
 
-export default class TextInputWeb extends Component {
+export default class ReactorsFormTextInputDOM extends Component {
+  static omit = [
+    'autoCapitalize',
+    'autoCorrect',
+    'blurOnSubmit',
+    'keyboardType',
+    'multiline',
+    'onChangeText',
+    'placeholderTextColor',
+    'throttle',
+    'underlineColorAndroid',
+  ];
+
   render() {
     const gestures = Gesture.handlers({
       ...this.props,
@@ -12,16 +24,16 @@ export default class TextInputWeb extends Component {
         }
       },
     });
-    const webProps = _.omit(gestures, ['throttle']);
+    const webProps = omit(gestures, ReactorsFormTextInputDOM.omit);
     return (
       <input
         type="text"
+        {...webProps}
         style={{
           display: 'block',
           width: '100%',
-          ...this.props.style,
+          ...webProps.style,
         }}
-        {...webProps}
         />
     );
   }
