@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Text,
   TouchableHighlight,
+  View,
 } from 'react-native';
 import {StyleSheet} from 'reactors';
 
@@ -29,6 +30,8 @@ export default function ButtonMobile(props: $props) {
       style.fontWeight = 'bold';
     }
     content = (<Text style={style}>{props.children}</Text>);
+  } else {
+    content = (<View>{content}</View>);
   }
   return (
     <TouchableHighlight
