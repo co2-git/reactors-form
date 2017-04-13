@@ -79,6 +79,31 @@ class MyForm extends PureComponent {
 
 # Components
 
+## `<Button>`
+
+```javascript
+import React, {Component} from 'react';
+import {Button} from 'reactors-form';
+
+class MyButton extends Component {
+  render() {
+    return (
+      <Button onPress={(event) => console.log('Pressed!')}>
+        Some text or components here ...
+      </Button>
+    );
+  }
+}
+```
+
+### `onPress: (event: Event) => void`
+
+A function to be called when user presses button.
+
+### `style: $Style`
+
+A style that can overwrite button's default style.
+
 ## `<Input />`
 
 ### `confirm: boolean` default `false`
@@ -161,29 +186,6 @@ If it is a date, it will fail to validate if value is before `min`.
 
 An action called every time the input changes. First argument is input's current value.
 
-## `<Button>`
+## `<Range>`
 
-```javascript
-import React, {Component} from 'react';
-import {Button} from 'reactors-form';
-
-class MyButton extends Component {
-  render() {
-    return (
-      <Button onPress={(event) => console.log('Pressed!')}>
-        Some text or components here ...
-      </Button>
-    );
-  }
-}
-```
-
-### Props
-
-#### `onPress: (event: React$Event) => void`
-
-A function to be called when user presses button.
-
-### `style: $Style`
-
-A style that can overwrite button's default style.
+## `<Switch>`
