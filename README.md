@@ -79,30 +79,18 @@ class MyForm extends PureComponent {
 
 # Components
 
-## `<TextInput />`
+## `<Input />`
+
+### `confirm: string`
+
+**Only applicable with `password`**. Show a second input to confirm password. If the two passwords do not match, it will fail on validate.
 
 ```javascript
-import React, {Component} from 'react';
-import {TextInput} from 'reactors-form';
-
-class MyTextInput extends Component {
-  state = {value: null};
-  render() {
-    return (
-      <TextInput
-        value={this.state.value}
-        onChange={(value) => this.setState({value})}
-        />
-    );
-  }
-}
+<Input
+  confirm
+  password
+/>
 ```
-
-### Props
-
-#### `value: string`
-
-A stringable value.
 
 ### `onChange: (value: string) => void`
 
