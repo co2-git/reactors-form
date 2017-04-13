@@ -8,24 +8,72 @@ Reactors is a framework based on React to build hybrid apps that run web, mobile
 # Install
 
 ```bash
-npm i -S reactors-form
+yarn add reactors-form
 ```
 
 # Usage
 
 ```javascript
-import React, {Component} from 'react';
-import {View} from 'reactors';
-import {TextInput} from 'reactors-form';
+import React, {PureComponent} from 'react';
+import {Text, View} from 'reactors';
+import {Button, Input} from 'reactors-form';
 
-class MyForm extends Component {
+class MyForm extends PureComponent {
+  email: Input;
+  password: Input;
+
+  state = {
+    error: null,
+  };
+
   render() {
     return (
       <View>
-        <TextInput />
+        <Text bold size={24}>Login</Text>
+        {
+          this.state.error &&
+          <Text color="red">{this.state.error.message}</Text>
+        }
+        <Input
+          ref={(email) => {
+            this.email = email;
+          }}
+          required
+        />
+        <Input
+          confirm
+          match={[/\W/, /\w/, /\d/]}
+          max={16}
+          min={4}
+          password
+          ref={(password) => {
+            this.password = password;
+          }}
+          required
+        />
+        <Button onPress={this.submit}>
+          Login
+        </Button>
       </View>
     );
   }
+
+  submit = () => {
+    const email = this.email.validate();
+    const password = this.password.validate();
+
+    if (!email.isValid) {
+      this.setState({error: email.error});
+    } else if (!password.isValid) {
+      this.setState({error: password.error});
+    } else {
+      this.setState({
+        error: null,
+      }, () => {
+        login(email.value, password.value);
+      });
+    }
+  };
 }
 ```
 
