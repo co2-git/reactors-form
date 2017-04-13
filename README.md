@@ -35,6 +35,7 @@ class MyForm extends PureComponent {
           <Text color="red">{this.state.error.message}</Text>
         }
         <Input
+          email
           ref={(email) => {
             this.email = email;
           }}
@@ -42,7 +43,6 @@ class MyForm extends PureComponent {
         />
         <Input
           confirm
-          match={[/\W/, /\w/, /\d/]}
           max={16}
           min={4}
           password
