@@ -81,7 +81,7 @@ class MyForm extends PureComponent {
 
 ## `<Input />`
 
-### `confirm: string`
+### `confirm: boolean` default `false`
 
 **Only applicable with `password`**. Show a second input to confirm password. If the two passwords do not match, it will fail on validate.
 
@@ -89,6 +89,71 @@ class MyForm extends PureComponent {
 <Input
   confirm
   password
+/>
+```
+
+### `email: boolean` default `false`
+
+It will fail on validate if not a valid email address. You can specify your own regex via `match`.
+
+```javascript
+<Input
+  email
+  match={/\.gmail\.com$/}
+/>
+```
+
+### `required: boolean` default `false`
+
+It will fail on validate if value is empty.
+
+```javascript
+<Input
+  required
+/>
+```
+
+### `max: number | Date` default `Infinity`
+
+If it is a text input, it will fail to validate if characters length is greater than `max`.
+It it is a number, it will fail to validate if value is greater than `max`.
+If it is a date, it will fail to validate if value is after `max`.
+
+```javascript
+<Input
+  max={100}
+/>
+
+<Input
+  number
+  max={100}
+/>
+
+<Input
+  date
+  max={Date.now()}
+/>
+```
+
+### `min: number | Date` default `Infinity`
+
+If it is a text input, it will fail to validate if characters length is lesser than `min`.
+It it is a number, it will fail to validate if value is lesser than `min`.
+If it is a date, it will fail to validate if value is before `min`.
+
+```javascript
+<Input
+  min={100}
+/>
+
+<Input
+  number
+  min={100}
+/>
+
+<Input
+  date
+  min={Date.now()}
 />
 ```
 
