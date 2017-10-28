@@ -100,7 +100,7 @@ class MyButton extends Component {
 
 A function to be called when user presses button.
 
-### `style: $Style`
+### `style: any`
 
 A style that can overwrite button's default style.
 
@@ -125,16 +125,6 @@ It will fail on validate if not a valid email address. You can specify your own 
 <Input
   email
   match={/\.gmail\.com$/}
-/>
-```
-
-### `required: boolean` default `false`
-
-It will fail on validate if value is empty.
-
-```javascript
-<Input
-  required
 />
 ```
 
@@ -185,6 +175,16 @@ If it is a date, it will fail to validate if value is before `min`.
 ### `onChange: (value: string) => void`
 
 An action called every time the input changes. First argument is input's current value.
+
+### `required: boolean` default `false`
+
+It will fail on validate if value is empty.
+
+```javascript
+<Input
+  required
+/>
+```
 
 ## `<Range>`
 
