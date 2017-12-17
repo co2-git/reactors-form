@@ -5,27 +5,11 @@ import find from 'lodash/find';
 import {Button} from 'reactors-form';
 import ReactDOM from 'react-dom';
 
-type $ItemId =
-  | string
-  | number
-  ;
-
-type $Item = {|
-  +id: $ItemId,
-  +value: string | number | boolean,
-|};
-
-type $DropDownMergedProps = {
-  items: $Item[],
-  selected: $ItemId,
-};
-
-export default class DropDown extends PureComponent {
+export default class Picker extends PureComponent {
   static defaultProps = {
     data: [],
     renderRow: () => <View />,
   };
-  props: $DropDownMergedProps;
   state = {
     collapsed: !this.props.show,
   };
@@ -83,19 +67,6 @@ export default class DropDown extends PureComponent {
 }
 
 const styles = new StyleSheet({
-  container: {
-    boxSizing: 'borderBox',
-    alignItems: 'center',
-  },
-  dropDown: {
-    backgroundColor: 'white',
-    height: 200,
-    overflow: 'auto',
-    position: 'absolute',
-  },
-  item: {
-    padding: 4,
-  },
   portal: {
     position: 'absolute',
     top: 0,
