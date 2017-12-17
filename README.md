@@ -8,7 +8,7 @@ Reactors is a framework based on React to build hybrid apps that run web, mobile
 # Install
 
 ```bash
-yarn add reactors-form
+yarn add react reactors reactors-form
 ```
 
 # Usage
@@ -16,65 +16,51 @@ yarn add reactors-form
 ```javascript
 import React, {PureComponent} from 'react';
 import {Text, View} from 'reactors';
-import {Button, Input} from 'reactors-form';
+import {Button, Input, Picker} from 'reactors-form';
 
-class MyForm extends PureComponent {
-  email: Input;
-  password: Input;
+const teams = [
+  {id: 1, name: 'Red'},
+  {id: 2, name: 'Blue'},
+  {id: 3, name: 'Green'},
+];
 
+class LoginForm extends PureComponent {
   state = {
+    email: null,
     error: null,
+    team: null,
   };
-
-  render() {
-    return (
-      <View>
-        <Text bold size={24}>Login</Text>
-        {
-          this.state.error &&
-          <Text color="red">{this.state.error.message}</Text>
-        }
-        <Input
-          email
-          ref={(email) => {
-            this.email = email;
-          }}
-          required
-        />
-        <Input
-          confirm
-          max={16}
-          min={4}
-          password
-          ref={(password) => {
-            this.password = password;
-          }}
-          required
-        />
-        <Button onPress={this.submit}>
-          Login
-        </Button>
-      </View>
-    );
-  }
-
+  render = () => (
+    <View>
+      {this.state.error && <Text>{this.state.error}</Text>}
+      <Input
+        email
+        name="email"
+        value={this.state.email}
+        onChangeText={email => this.setState({email})}
+      />
+      <Picker
+        data={teams}
+        id="id"
+        renderRow={team => (
+          <Text>{team.name}</Text>
+        )}
+        onSelect={teamId => this.setState({team: teamId})}
+      />
+      <Button onPress={this.submit}>Login</Button>
+    </View>
+  );
   submit = () => {
-    const email = this.email.validate();
-    const password = this.password.validate();
-
-    if (!email.isValid) {
-      this.setState({error: email.error});
-    } else if (!password.isValid) {
-      this.setState({error: password.error});
+    if (!Input.isValid('email')) {
+      this.setState({error: Input.getErrorMessage('email')});
     } else {
-      this.setState({
-        error: null,
-      }, () => {
-        login(email.value, password.value);
+      this.setState({error: ''}, () => {
+        this.props.submit(this.state.email, this.state.team);
       });
     }
   };
 }
+
 ```
 
 # Components

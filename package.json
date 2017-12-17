@@ -1,6 +1,6 @@
 {
   "name": "reactors-form",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Form support for reactors",
   "main": "dist/index.js",
   "scripts": {
