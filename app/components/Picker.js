@@ -1,8 +1,6 @@
 import React, {PureComponent} from 'react';
-import {Row, Stack} from 'reactors-grid';
-import {Dimensions, StyleSheet, Text, View} from 'reactors';
+import {Dimensions, StyleSheet, View} from 'reactors';
 import find from 'lodash/find';
-import {Button} from 'reactors-form';
 import ReactDOM from 'react-dom';
 
 export default class Picker extends PureComponent {
