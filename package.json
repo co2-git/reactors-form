@@ -1,12 +1,13 @@
 {
   "name": "reactors-form",
-  "version": "3.0.0-beta2",
+  "version": "3.0.0-beta3",
   "description": "Form support for reactors",
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "babel:watch": "babel --watch --out-dir dist/ app/",
     "babel": "babel --out-dir dist/ app/",
-    "babel:watch": "babel --watch --out-dir dist/ app/"
+    "prepublishOnly": "yarn babel",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",

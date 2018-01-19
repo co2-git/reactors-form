@@ -45,6 +45,10 @@ export default class Input extends PureComponent {
       'onChangeText',
     ]);
     props.onChange = this.onChange;
+    if (Reactors.isMobile()) {
+      const {TextInput} = require('react-native');
+      return <TextInput {...props} />;
+    }
     return (
       <input
         {...props}
