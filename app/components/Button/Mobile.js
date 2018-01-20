@@ -20,29 +20,25 @@ type $props = {
 export default class ButtonMobile extends Component {
   props: $props;
   render() {
-    let content;
-    if (typeof this.props.children === 'string') {
-      const style = {};
-      if (this.props.color) {
-        style.color = this.props.color;
+    const content = React.Children.toArray(this.props.children).map((child) => {
+      if (typeof child === 'string') {
+        const style = {};
+        if (this.props.color) {
+          style.color = this.props.color;
+        }
+        if (this.props.size) {
+          style.fontSize = this.props.size;
+        }
+        if (this.props.bold) {
+          style.fontWeight = 'bold';
+        }
+        if (this.props.align) {
+          style.textAlign = this.props.align;
+        }
+        return <Text style={style}>{child}</Text>;
       }
-      if (this.props.size) {
-        style.fontSize = this.props.size;
-      }
-      if (this.props.bold) {
-        style.fontWeight = 'bold';
-      }
-      if (this.props.align) {
-        style.textAlign = this.props.align;
-      }
-      content = (<Text style={style}>{this.props.children}</Text>);
-    } else {
-      content = (
-        <View>
-          {this.props.children}
-        </View>
-      );
-    }
+      return child;
+    });
     return (
       <TouchableHighlight
         style={[styleSheet.container, this.props.style]}
@@ -53,7 +49,9 @@ export default class ButtonMobile extends Component {
         }}
         underlayColor={this.props.activeBackgroundColor || '#ccc'}
         >
-        {content}
+        <View>
+          {content}
+        </View>
       </TouchableHighlight>
     );
   }

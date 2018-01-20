@@ -47,7 +47,18 @@ export default class Input extends PureComponent {
     props.onChange = this.onChange;
     if (Reactors.isMobile()) {
       const {TextInput} = require('react-native');
-      return <TextInput {...props} />;
+      let mobileProps = {...props};
+      if (mobileProps.email) {
+        mobileProps = omit(mobileProps, ['email']);
+        mobileProps.keyboardType = 'email-address';
+      } else if (mobileProps.number) {
+        mobileProps = omit(mobileProps, ['number']);
+        mobileProps.keyboardType = 'numeric';
+      } else if (mobileProps.password) {
+        mobileProps = omit(mobileProps, ['password']);
+        mobileProps.secureTextEntry = true;
+      }
+      return <TextInput {...mobileProps} />;
     }
     return (
       <input
